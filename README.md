@@ -33,4 +33,4 @@ Test ověřuje strukturu kvízu, férové zastoupení archetypů, dosažitelnost
 
 ## Nasazení
 
-Workflow v `.github/workflows/pages.yml` nasazuje větev `main` automaticky na GitHub Pages.
+GitHub Pages publikuje obsah větve `main` automaticky.
