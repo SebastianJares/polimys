@@ -1,0 +1,9 @@
+{
+  "name": "polimys",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Certifikovaně nevědecký kvíz: Jaká myš jsi?",
+  "scripts": {
+    "test": "node tests/quiz.test.cjs"
+  }
+}
