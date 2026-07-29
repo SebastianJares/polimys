@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Certifikovaně nevědecký test, který odhalí, jaký druh myši doopravdy jsi."
+    />
+    <meta name="theme-color" content="#f7efe5" />
+    <meta property="og:title" content="POLIMYŠ — Jaká myš jsi?" />
+    <meta
+      property="og:description"
+      content="15 otázek. 10 druhů myší. Jedna překvapivě přesná diagnóza."
+    />
+    <title>POLIMYŠ — Jaká myš jsi?</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-cheese" aria-hidden="true">🧀</div>
+
+    <header class="site-header">
+      <button class="brand" type="button" data-go-home aria-label="Zpět na začátek">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-ear"></span>
+          <span class="brand-ear"></span>
+          <span class="brand-face">•ᴗ•</span>
+        </span>
+        <span>POLI<span>MYŠ</span></span>
+      </button>
+      <button class="nav-pill" type="button" data-open-atlas>
+        <span aria-hidden="true">◉</span> Atlas myší
+      </button>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <section class="screen hero-screen is-active" id="home-screen" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Ústav aplikované myšologie uvádí</div>
+          <h1 id="hero-title">
+            Jaká <em>myš</em><br />
+            v tobě <span class="scribble">šramotí?</span>
+          </h1>
+          <p class="hero-lead">
+            Odpověz na 15 zcela běžných životních situací. Náš přísně nepřesný algoritmus
+            odhalí, jestli jsi rozený šampion, broskev, nebo malý chlupatý problém.
+          </p>
+
+          <div class="name-field">
+            <label for="mouse-name">Jak ti máme říkat?</label>
+            <div class="input-wrap">
+              <input
+                id="mouse-name"
+                type="text"
+                maxlength="24"
+                autocomplete="nickname"
+                placeholder="Třeba Sýromil"
+              />
+              <span aria-hidden="true">✎</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="button button-primary" type="button" id="start-quiz">
+              Spustit myšoskop
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="text-button" type="button" data-open-atlas>
+              Nejdřív si prohlédnout myši
+            </button>
+          </div>
+
+          <div class="tiny-proof">
+            <div class="proof-faces" aria-hidden="true">
+              <span>🐭</span><span>🐭</span><span>🐭</span>
+            </div>
+            <p><strong>10 z 10 myší</strong> by test vyplnilo znovu.</p>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <span class="doodle doodle-star">✦</span>
+          <span class="doodle doodle-spark">✷</span>
+          <span class="doodle doodle-cheese">🧀</span>
+          <div id="hero-mouse"></div>
+          <div class="speech-bubble">Tak co, troufáš si?</div>
+          <div class="stamp">
+            <span>VÝSLEDEK</span>
+            <strong>100%</strong>
+            <span>MYŠÍ</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen quiz-screen" id="quiz-screen" aria-labelledby="question-title">
+        <div class="quiz-topbar">
+          <button class="back-button" id="back-question" type="button" aria-label="Předchozí otázka">
+            ←
+          </button>
+          <div class="progress-block">
+            <div class="progress-labels">
+              <span>Myšometr se zahřívá</span>
+              <strong id="progress-count">1 / 15</strong>
+            </div>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-valuemin="1"
+              aria-valuemax="15"
+              aria-valuenow="1"
+            >
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+          <span class="question-cheese" aria-hidden="true">🧀</span>
+        </div>
+
+        <div class="question-layout">
+          <aside class="question-art" aria-hidden="true">
+            <div class="mini-scene">
+              <div id="quiz-mouse"></div>
+              <span class="thought thought-one">?</span>
+              <span class="thought thought-two">!</span>
+            </div>
+            <p id="mouse-comment">Hmm… velice zajímavé.</p>
+          </aside>
+
+          <div class="question-card" id="question-card">
+            <span class="question-number" id="question-number">OTÁZKA 01</span>
+            <h2 id="question-title">Načítám velmi důležitou otázku…</h2>
+            <p class="question-hint">Vyber odpověď, která tě vystihuje nejvíc.</p>
+            <div class="answers" id="answers"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen result-screen" id="result-screen" aria-labelledby="result-title">
+        <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+        <div class="result-heading">
+          <div class="eyebrow"><span></span> Myšologická expertiza dokončena</div>
+          <p id="result-person">Výsledek je jasný.</p>
+          <h1 id="result-title">Jsi <em>Myší šampion!</em></h1>
+        </div>
+
+        <article class="result-card" id="result-card">
+          <div class="result-visual">
+            <span class="result-rank">VZÁCNÝ EXEMPLÁŘ</span>
+            <div id="result-mouse" aria-hidden="true"></div>
+            <div class="result-seal">
+              <span>ověřeno</span>
+              <strong>POLIMYŠÍ</strong>
+            </div>
+          </div>
+          <div class="result-copy">
+            <span class="latin-name" id="result-latin">Mus musculus magnificus</span>
+            <p class="result-description" id="result-description"></p>
+            <div class="trait-chip-row" id="trait-chips"></div>
+            <div class="strength-grid">
+              <div>
+                <h3><span aria-hidden="true">↗</span> Silná stránka</h3>
+                <p id="result-strength"></p>
+              </div>
+              <div>
+                <h3><span aria-hidden="true">↘</span> Slabá stránka</h3>
+                <p id="result-weakness"></p>
+              </div>
+            </div>
+            <div class="match-block">
+              <div class="match-top">
+                <span>Shoda s archetypem</span>
+                <strong id="match-value">94 %</strong>
+              </div>
+              <div class="match-track"><div id="match-fill"></div></div>
+            </div>
+            <p class="runner-up" id="runner-up"></p>
+          </div>
+        </article>
+
+        <div class="result-actions">
+          <button class="button button-primary" type="button" id="share-result">
+            Zkopírovat výsledek <span aria-hidden="true">⧉</span>
+          </button>
+          <button class="button button-secondary" type="button" id="restart-quiz">
+            Zkusit to znovu <span aria-hidden="true">↻</span>
+          </button>
+          <button class="text-button" type="button" data-open-atlas>
+            Prozkoumat všechny druhy
+          </button>
+        </div>
+        <p class="disclaimer">
+          Výsledek je certifikovaně nevědecký. Přesto se v něm možná nepříjemně poznáš.
+        </p>
+      </section>
+    </main>
+
+    <dialog class="atlas-dialog" id="atlas-dialog" aria-labelledby="atlas-title">
+      <div class="atlas-shell">
+        <div class="atlas-header">
+          <div>
+            <div class="eyebrow"><span></span> Terénní příručka</div>
+            <h2 id="atlas-title">Velký atlas <em>polimyší</em></h2>
+            <p>Klikni na exemplář a seznam se s ním z bezpečné vzdálenosti.</p>
+          </div>
+          <button class="close-button" type="button" id="close-atlas" aria-label="Zavřít atlas">
+            ×
+          </button>
+        </div>
+        <div class="atlas-grid" id="atlas-grid"></div>
+      </div>
+    </dialog>
+
+    <dialog class="type-dialog" id="type-dialog" aria-labelledby="type-dialog-title">
+      <button class="close-button" type="button" id="close-type" aria-label="Zavřít detail">
+        ×
+      </button>
+      <div class="type-detail-art" id="type-detail-art" aria-hidden="true"></div>
+      <div class="type-detail-copy">
+        <span id="type-detail-latin"></span>
+        <h2 id="type-dialog-title"></h2>
+        <p id="type-detail-description"></p>
+        <div class="trait-chip-row" id="type-detail-traits"></div>
+        <div class="detail-strengths">
+          <p><strong>Superschopnost:</strong> <span id="type-detail-strength"></span></p>
+          <p><strong>Achillova pacička:</strong> <span id="type-detail-weakness"></span></p>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Výsledek zkopírován!</div>
+
+    <footer>
+      <span>© 2026 POLIMYŠ</span>
+      <span>Vyrobeno se sýrem a podezřelou přesností.</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
